@@ -4,7 +4,7 @@ IncrementalListView Plugin for Xamarin.Forms which provides an IncrementalListVi
 
 ### Where to get it?
 
-You can clone or download the repo and build it yourself. Or, grab it from [Nuget]().
+You can clone or download the repo and build it yourself. Or, grab it from [Nuget](https://www.nuget.org/packages/IncrementalListView.FormsPlugin/).
 
 ### How to Use
 
