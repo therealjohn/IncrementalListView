@@ -2,6 +2,8 @@
 
 IncrementalListView Plugin for Xamarin.Forms which provides an IncrementalListView control for loading data incrementally as a user scrolls.
 
+![Demo gif of the control on iOS](/Assets/demo.gif?raw=true)
+
 ### Where to get it?
 
 You can clone or download the repo and build it yourself. Or, grab it from [Nuget](https://www.nuget.org/packages/IncrementalListView.FormsPlugin/).
