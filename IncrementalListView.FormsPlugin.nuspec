@@ -6,7 +6,7 @@
     <title>IncrementalListView Plugin for Xamarin.Forms</title>
     <authors>John Miller</authors>
     <owners>John Miller</owners>
-    <iconUrl>https://github.com/therealjohn/IncrementalListView/blob/master/Assets/icon.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/therealjohn/IncrementalListView/master/Assets/icon.png</iconUrl>
     <licenseUrl>https://github.com/therealjohn/IncrementalListView/blob/master/LICENSE</licenseUrl>
 	  <projectUrl>https://github.com/therealjohn/IncrementalListView/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
