@@ -10,7 +10,7 @@
     <licenseUrl>https://github.com/therealjohn/IncrementalListView/blob/master/LICENSE</licenseUrl>
 	  <projectUrl>https://github.com/therealjohn/IncrementalListView/</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>IncrementalListView Plugin for Xamarin.Forms which provides an IncrementalListView control for loading data incrementally as a user scrolls.</description>
+    <description>A Plugin for Xamarin.Forms which provides an IncrementalListView control for loading data incrementally as a user scrolls.</description>
     <dependencies>
       <dependency id="Xamarin.Forms" version="2.3.0.107" />
     </dependencies>
