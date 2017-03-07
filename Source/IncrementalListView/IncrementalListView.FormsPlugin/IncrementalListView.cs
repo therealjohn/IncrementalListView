@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace IncrementalListView.FormsPlugin
 {
@@ -54,6 +56,25 @@ namespace IncrementalListView.FormsPlugin
         void OnItemAppearing(object sender, ItemVisibilityEventArgs e)
         {
             int position = itemsSource?.IndexOf(e.Item) ?? 0;
+            int pageSize = 0;
+
+            if (IsGroupingEnabled && position == -1)
+            {
+                int currentGroupIndex = 0;
+                foreach(IList groups in itemsSource)
+                {
+                    position = groups?.IndexOf(e.Item) ?? -1;
+
+                    if (position >= 0)
+                    {
+                        position += (currentGroupIndex * groups.Count);
+                        pageSize = groups.Count;
+                        break;
+                    }
+
+                    currentGroupIndex++;
+                }
+            }
 
             if (itemsSource != null)
             {
@@ -62,8 +83,13 @@ namespace IncrementalListView.FormsPlugin
                 if (PreloadCount <= 0)
                     PreloadCount = 1;
 
-                int preloadIndex = Math.Max(itemsSource.Count - PreloadCount, 0);
+                int preloadIndex = 0;
 
+                if(IsGroupingEnabled)
+                    preloadIndex = Math.Max(itemsSource.Count * pageSize - PreloadCount, 0);
+                else
+                    preloadIndex = Math.Max(itemsSource.Count - PreloadCount, 0);
+                
                 if ((position > lastPosition || (position == itemsSource.Count - 1)) && (position >= preloadIndex))
                 {
                     lastPosition = position;
