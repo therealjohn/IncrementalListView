@@ -14,7 +14,11 @@ namespace IncrementalListViewSample
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new IncrementalListViewPage());
+            var tabbedPage = new TabbedPage();
+            tabbedPage.Children.Add(new NavigationPage(new IncrementalListViewPage()) { Title = "Normal" });
+            tabbedPage.Children.Add(new NavigationPage(new GroupedIncrementalListViewPage()) { Title = "Grouped" });
+
+            MainPage = tabbedPage;
         }
     }
 }

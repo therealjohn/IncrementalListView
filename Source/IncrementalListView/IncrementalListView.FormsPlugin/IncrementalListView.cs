@@ -57,7 +57,7 @@ namespace IncrementalListView.FormsPlugin
 
             if (itemsSource != null)
             {
-                // preloadIndex should never end up to be equal to itemsSource.Count otherwise
+                // PreloadCount should never end up to be equal to itemsSource.Count otherwise
                 // LoadMoreItems would not be called
                 if (PreloadCount <= 0)
                     PreloadCount = 1;

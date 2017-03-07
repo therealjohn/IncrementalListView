@@ -11,14 +11,14 @@ using Xamarin.Forms;
 
 namespace IncrementalListViewSample
 {
-    public class IncrementalViewModel : INotifyPropertyChanged, ISupportIncrementalLoading
+    public class GroupedIncrementalViewModel : INotifyPropertyChanged, ISupportIncrementalLoading
     {
         int counter;
         int max = 200;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ObservableCollection<string> MyItems { get; set; }
+        public ObservableCollection<PageTypeGroup> MyItems { get; set; }
 
         #region ISupportIncrementalLoading Implementation
 
@@ -55,9 +55,9 @@ namespace IncrementalListViewSample
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public IncrementalViewModel()
+        public GroupedIncrementalViewModel()
         {
-            MyItems = new ObservableCollection<string>();
+            MyItems = new ObservableCollection<PageTypeGroup>();
 
             LoadMoreItemsCommand = new Command(async () => await LoadMoreItems());
 
@@ -75,15 +75,32 @@ namespace IncrementalListViewSample
             await Task.Delay(1000);
 
             int end = counter + PageSize;
+            var newGroup = new PageTypeGroup($"{counter} - {end - 1}", "");
             for (; counter < end; counter++)
             {
-                MyItems.Add(counter.ToString());
+                newGroup.Add(counter.ToString());
             }
+
+            MyItems.Add(newGroup);
 
             // artificial way to end ability to load more items.
             HasMoreItems = counter < max;
 
             IsLoadingIncrementally = false;
         }
+    }
+
+    public class PageTypeGroup : List<string>
+    {
+        public string Title { get; set; }
+        public string ShortName { get; set; } //will be used for jump lists
+        public string Subtitle { get; set; }
+        public PageTypeGroup(string title, string shortName)
+        {
+            Title = title;
+            ShortName = shortName;
+        }
+
+        public static IList<PageTypeGroup> All { private set; get; }
     }
 }

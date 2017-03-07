@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:IncrementalListView.FormsPlugin;assembly=IncrementalListView.FormsPlugin"
+             x:Class="IncrementalListViewSample.GroupedIncrementalListViewPage"
+             Title="Grouped">
+    <local:IncrementalListView
+        ItemsSource="{Binding MyItems}"
+        PreloadCount="5"
+        IsGroupingEnabled="True"
+        GroupDisplayBinding="{Binding Title}}"
+        RowHeight="88">
+
+        <x:Arguments>
+            <ListViewCachingStrategy>RecycleElement</ListViewCachingStrategy>
+        </x:Arguments>
+
+        <ListView.ItemTemplate>
+
+            <DataTemplate>
+
+                <ViewCell>
+
+                    <Label Text="{Binding .}"/>
+
+                </ViewCell>
+
+            </DataTemplate>
+
+        </ListView.ItemTemplate>
+
+        <ListView.GroupHeaderTemplate>
+            
+            <DataTemplate>
+
+                <ViewCell>
+                    <Label Text="{Binding Title}"
+                    FontSize="Small"
+                    TextColor="Black"
+                    BackgroundColor="Gray"/>
+                </ViewCell>
+                
+            </DataTemplate>
+            
+        </ListView.GroupHeaderTemplate>
+
+        <ListView.Footer>
+
+            <ActivityIndicator Margin="20" IsRunning="{Binding IsLoadingIncrementally}" IsVisible="{Binding IsLoadingIncrementally}"/>
+
+        </ListView.Footer>
+
+    </local:IncrementalListView>
+</ContentPage>
